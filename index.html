@@ -81,26 +81,21 @@
             text-transform: uppercase;
         }
 
-        .header-stats {
+        .header-links {
             display: flex;
-            gap: 40px;
+            gap: 24px;
+            align-items: center;
         }
 
-        .header-stat {
-            text-align: right;
+        .header-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.2s;
         }
 
-        .header-stat-value {
-            font-size: 20px;
-            font-weight: 600;
-            color: var(--accent-green);
-        }
-
-        .header-stat-label {
-            font-size: 11px;
-            color: var(--text-muted);
-            text-transform: uppercase;
-            letter-spacing: 1px;
+        .header-links a:hover {
+            color: var(--seismic-pink);
         }
 
         /* Hero Section */
@@ -134,6 +129,121 @@
             padding: 0 40px 80px;
         }
 
+        /* What is Seismic Section */
+        .seismic-info {
+            background: linear-gradient(135deg, rgba(208, 160, 183, 0.08) 0%, rgba(208, 160, 183, 0.02) 100%);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 40px;
+            margin-bottom: 60px;
+        }
+
+        .seismic-info-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 32px;
+        }
+
+        .seismic-info h2 {
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .seismic-info .subtitle {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        .devnet-badge {
+            background: rgba(255, 159, 67, 0.15);
+            color: var(--accent-orange);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .devnet-badge::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: var(--accent-orange);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-bottom: 32px;
+        }
+
+        .info-card {
+            background: var(--bg-dark);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 24px;
+        }
+
+        .info-card h4 {
+            color: var(--seismic-pink);
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .info-card p {
+            color: var(--text-secondary);
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        .seismic-features {
+            display: flex;
+            gap: 40px;
+            padding-top: 24px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .feature-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(208, 160, 183, 0.1);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .feature-text {
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        .feature-text strong {
+            color: var(--text-primary);
+            display: block;
+        }
+
         /* Calculator Section */
         .calculator-section {
             background: var(--bg-card);
@@ -147,7 +257,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 32px;
+            margin-bottom: 16px;
         }
 
         .calculator-title {
@@ -162,6 +272,13 @@
             border-radius: 20px;
             font-size: 12px;
             font-weight: 500;
+        }
+
+        .calculator-desc {
+            color: var(--text-secondary);
+            font-size: 14px;
+            margin-bottom: 32px;
+            max-width: 600px;
         }
 
         .slider-container {
@@ -264,7 +381,7 @@
             color: var(--text-secondary);
         }
 
-        /* Fintech Companies Section */
+        /* Partners Section */
         .section-header {
             display: flex;
             justify-content: space-between;
@@ -338,15 +455,15 @@
         }
 
         .fintech-card.integrated::before {
-            content: 'INTEGRATED';
+            content: 'BUILDING ON SEISMIC';
             position: absolute;
             top: 16px;
-            right: -32px;
+            right: -40px;
             background: var(--accent-green);
             color: var(--bg-dark);
             font-size: 9px;
             font-weight: 600;
-            padding: 4px 40px;
+            padding: 4px 50px;
             transform: rotate(45deg);
             letter-spacing: 1px;
         }
@@ -444,22 +561,22 @@
         .status-dot.green { background: var(--accent-green); }
         .status-dot.pink { background: var(--seismic-pink); }
 
-        /* How It Works Section */
-        .how-it-works {
+        /* How Seismic Helps Section */
+        .how-section {
             margin-top: 80px;
             padding: 60px;
-            background: linear-gradient(135deg, rgba(208, 160, 183, 0.05) 0%, transparent 100%);
+            background: var(--bg-card);
             border: 1px solid var(--border-color);
             border-radius: 24px;
         }
 
-        .how-it-works h2 {
+        .how-section h2 {
             font-size: 32px;
             text-align: center;
             margin-bottom: 16px;
         }
 
-        .how-it-works > p {
+        .how-section > p {
             text-align: center;
             color: var(--text-secondary);
             margin-bottom: 48px;
@@ -468,51 +585,55 @@
             margin-right: auto;
         }
 
-        .steps-grid {
+        .problem-solution {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 32px;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
         }
 
-        .step {
-            text-align: center;
-            position: relative;
+        .problem-box, .solution-box {
+            padding: 32px;
+            border-radius: 16px;
         }
 
-        .step:not(:last-child)::after {
-            content: '';
-            position: absolute;
-            top: 32px;
-            right: -16px;
-            width: 32px;
-            height: 2px;
-            background: var(--border-color);
+        .problem-box {
+            background: rgba(255, 68, 102, 0.05);
+            border: 1px solid rgba(255, 68, 102, 0.2);
         }
 
-        .step-number {
-            width: 64px;
-            height: 64px;
-            border-radius: 50%;
-            background: var(--bg-card);
-            border: 2px solid var(--seismic-pink);
+        .solution-box {
+            background: rgba(0, 216, 151, 0.05);
+            border: 1px solid rgba(0, 216, 151, 0.2);
+        }
+
+        .problem-box h3 {
+            color: #ff4466;
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+
+        .solution-box h3 {
+            color: var(--accent-green);
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+
+        .problem-box ul, .solution-box ul {
+            list-style: none;
+        }
+
+        .problem-box li, .solution-box li {
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            font-size: 14px;
             display: flex;
             align-items: center;
-            justify-content: center;
-            font-size: 24px;
-            font-weight: 700;
-            color: var(--seismic-pink);
-            margin: 0 auto 20px;
+            gap: 12px;
         }
 
-        .step h4 {
-            font-size: 16px;
-            font-weight: 600;
-            margin-bottom: 8px;
-        }
-
-        .step p {
-            font-size: 13px;
-            color: var(--text-secondary);
+        .problem-box li:last-child, .solution-box li:last-child {
+            border-bottom: none;
         }
 
         /* Footer */
@@ -554,11 +675,11 @@
             .impact-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
-            .steps-grid {
-                grid-template-columns: repeat(2, 1fr);
+            .info-grid {
+                grid-template-columns: 1fr;
             }
-            .step:not(:last-child)::after {
-                display: none;
+            .problem-solution {
+                grid-template-columns: 1fr;
             }
         }
 
@@ -566,9 +687,6 @@
             .header-content {
                 flex-direction: column;
                 gap: 20px;
-            }
-            .header-stats {
-                gap: 24px;
             }
             .hero h1 {
                 font-size: 32px;
@@ -579,14 +697,15 @@
             .impact-grid {
                 grid-template-columns: 1fr;
             }
-            .steps-grid {
-                grid-template-columns: 1fr;
-            }
             .container {
                 padding: 0 20px 60px;
             }
-            .calculator-section {
+            .calculator-section, .seismic-info {
                 padding: 24px;
+            }
+            .seismic-features {
+                flex-direction: column;
+                gap: 20px;
             }
         }
     </style>
@@ -620,15 +739,11 @@
                     <div class="logo-subtitle">Encrypted Blockchain Rails</div>
                 </div>
             </div>
-            <div class="header-stats">
-                <div class="header-stat">
-                    <div class="header-stat-value" id="totalVolume">$2.4T</div>
-                    <div class="header-stat-label">Total Fintech Volume</div>
-                </div>
-                <div class="header-stat">
-                    <div class="header-stat-value" id="potentialEncrypted">$0</div>
-                    <div class="header-stat-label">Potential Encrypted</div>
-                </div>
+            <div class="header-links">
+                <a href="https://docs.seismic.systems" target="_blank">Documentation</a>
+                <a href="https://www.seismic.systems/blog" target="_blank">Blog</a>
+                <a href="https://x.com/SeismicSys" target="_blank">@SeismicSys</a>
+                <a href="https://discord.gg/seismic" target="_blank">Discord</a>
             </div>
         </div>
     </header>
@@ -636,21 +751,97 @@
     <!-- Hero -->
     <section class="hero">
         <h1>Fintech Integration Impact Calculator</h1>
-        <p>See how Seismic's encrypted blockchain rails can transform the global fintech ecosystem. Calculate the impact of privacy-first financial infrastructure.</p>
+        <p>See how Seismic's encrypted blockchain rails can transform the global fintech ecosystem. Calculate the potential impact when fintechs move to private infrastructure.</p>
     </section>
 
     <!-- Main Content -->
     <main class="container">
+        <!-- What is Seismic -->
+        <section class="seismic-info">
+            <div class="seismic-info-header">
+                <div>
+                    <h2>What is Seismic?</h2>
+                    <p class="subtitle">A privacy-enabled blockchain built specifically for fintechs</p>
+                </div>
+                <div class="devnet-badge">DEVNET LIVE</div>
+            </div>
+
+            <div class="info-grid">
+                <div class="info-card">
+                    <h4>Private by Default</h4>
+                    <p>Every transaction is encrypted. Transfers, loans, swaps - all protected. Unlike public blockchains where everyone can see your balances and activity, Seismic keeps financial data confidential.</p>
+                </div>
+                <div class="info-card">
+                    <h4>EVM Compatible</h4>
+                    <p>Built on a fork of Reth with new opcodes (CLOAD, CSTORE) for encrypted storage. Developers use Solidity with Stype extension - same experience as Ethereum, plus privacy controls.</p>
+                </div>
+                <div class="info-card">
+                    <h4>Compliance Built-in</h4>
+                    <p>Transaction screening, reporting, and investigations integrated directly. Deep connections with on-/off-ramp and card providers worldwide. Privacy without sacrificing regulatory requirements.</p>
+                </div>
+            </div>
+
+            <div class="seismic-features">
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#D0A0B7" stroke-width="2">
+                            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                            <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                        </svg>
+                    </div>
+                    <div class="feature-text">
+                        <strong>Encrypted State</strong>
+                        Global state encrypted, not public
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#D0A0B7" stroke-width="2">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                        </svg>
+                    </div>
+                    <div class="feature-text">
+                        <strong>TEE Secured</strong>
+                        Intel TDX secure enclaves
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#D0A0B7" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/>
+                            <polyline points="12 6 12 12 16 14"/>
+                        </svg>
+                    </div>
+                    <div class="feature-text">
+                        <strong>2s Block Time</strong>
+                        Fast settlement on devnet
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#D0A0B7" stroke-width="2">
+                            <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+                        </svg>
+                    </div>
+                    <div class="feature-text">
+                        <strong>$17M Raised</strong>
+                        Backed by top investors
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- Calculator -->
         <section class="calculator-section">
             <div class="calculator-header">
                 <h2 class="calculator-title">Impact Calculator</h2>
-                <span class="calculator-badge">Real-time Simulation</span>
+                <span class="calculator-badge">Potential Simulation</span>
             </div>
+            <p class="calculator-desc">This calculator shows the potential impact if a percentage of global fintechs integrate with Seismic's encrypted blockchain rails. Based on real fintech market data.</p>
             
             <div class="slider-container">
                 <div class="slider-label">
-                    <span>What if this percentage of fintechs integrated Seismic?</span>
+                    <span>What if this percentage of fintechs moved to encrypted rails?</span>
                     <div class="slider-value"><span id="percentValue">25</span>%</div>
                 </div>
                 <input type="range" class="slider" id="percentSlider" min="0" max="100" value="25">
@@ -684,31 +875,31 @@
                         </svg>
                     </div>
                     <div class="impact-value orange" id="costSavings">$12B</div>
-                    <div class="impact-label">Annual Cost Savings</div>
+                    <div class="impact-label">Potential Annual Savings</div>
                 </div>
                 <div class="impact-card">
                     <div class="impact-icon">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#D0A0B7" stroke-width="2">
-                            <circle cx="12" cy="12" r="10"/>
-                            <polyline points="12 6 12 12 16 14"/>
+                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                            <polyline points="22 4 12 14.01 9 11.01"/>
                         </svg>
                     </div>
-                    <div class="impact-value pink" id="settlementTime">2.4s</div>
-                    <div class="impact-label">Avg Settlement Time</div>
+                    <div class="impact-value pink" id="txPrivate">140M</div>
+                    <div class="impact-label">Private Transactions / Year</div>
                 </div>
             </div>
         </section>
 
-        <!-- Fintech Companies -->
+        <!-- Fintech Partners & Potential -->
         <section>
             <div class="section-header">
                 <div>
                     <h2 class="section-title">Fintech Ecosystem</h2>
-                    <p class="section-subtitle">Real companies and their integration potential with Seismic</p>
+                    <p class="section-subtitle">Real partners building on Seismic and potential integrations</p>
                 </div>
                 <div class="filter-tabs">
                     <button class="filter-tab active" onclick="filterFintechs('all')">All</button>
-                    <button class="filter-tab" onclick="filterFintechs('integrated')">Integrated</button>
+                    <button class="filter-tab" onclick="filterFintechs('integrated')">Building on Seismic</button>
                     <button class="filter-tab" onclick="filterFintechs('payments')">Payments</button>
                     <button class="filter-tab" onclick="filterFintechs('neobank')">Neobanks</button>
                     <button class="filter-tab" onclick="filterFintechs('lending')">Lending</button>
@@ -716,35 +907,35 @@
             </div>
 
             <div class="fintech-grid" id="fintechGrid">
-                <!-- Cards will be populated by JavaScript -->
+                <!-- Cards populated by JavaScript -->
             </div>
         </section>
 
-        <!-- How It Works -->
-        <section class="how-it-works">
-            <h2>How Seismic Integration Works</h2>
-            <p>Four simple steps to transform your fintech with encrypted blockchain rails</p>
+        <!-- How Seismic Helps -->
+        <section class="how-section">
+            <h2>Why Fintechs Need Encrypted Rails</h2>
+            <p>The problem with public blockchains and how Seismic solves it</p>
             
-            <div class="steps-grid">
-                <div class="step">
-                    <div class="step-number">1</div>
-                    <h4>Connect API</h4>
-                    <p>Integrate Seismic SDK with your existing payment infrastructure</p>
+            <div class="problem-solution">
+                <div class="problem-box">
+                    <h3>Problems with Public Blockchains</h3>
+                    <ul>
+                        <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ff4466" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg> Everyone can see wallet balances and transactions</li>
+                        <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ff4466" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg> Competitors can track your volume and customers</li>
+                        <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ff4466" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg> Frontrunning and MEV attacks on DeFi</li>
+                        <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ff4466" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg> Sensitive business data exposed publicly</li>
+                        <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ff4466" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg> Institutions hesitant to use for compliance reasons</li>
+                    </ul>
                 </div>
-                <div class="step">
-                    <div class="step-number">2</div>
-                    <h4>Encrypt Rails</h4>
-                    <p>Transaction data is encrypted on Seismic's private blockchain</p>
-                </div>
-                <div class="step">
-                    <div class="step-number">3</div>
-                    <h4>Process Privately</h4>
-                    <p>Settlements occur without exposing business data publicly</p>
-                </div>
-                <div class="step">
-                    <div class="step-number">4</div>
-                    <h4>Scale Globally</h4>
-                    <p>Unified liquidity across borders with local rail support</p>
+                <div class="solution-box">
+                    <h3>How Seismic Solves This</h3>
+                    <ul>
+                        <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00D897" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Encrypted global state - balances not visible</li>
+                        <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00D897" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Transactions verified but details private</li>
+                        <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00D897" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> No frontrunning - encrypted execution</li>
+                        <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00D897" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Compliance tools built-in for regulators</li>
+                        <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00D897" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Institutions can participate with privacy</li>
+                    </ul>
                 </div>
             </div>
         </section>
@@ -753,59 +944,64 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="footer-links">
-            <a href="https://seismic.finance" target="_blank">Seismic Finance</a>
-            <a href="https://twitter.com/seabornefi" target="_blank">Twitter</a>
+            <a href="https://www.seismic.systems" target="_blank">seismic.systems</a>
+            <a href="https://docs.seismic.systems" target="_blank">Documentation</a>
+            <a href="https://x.com/SeismicSys" target="_blank">@SeismicSys</a>
             <a href="https://discord.gg/seismic" target="_blank">Discord</a>
-            <a href="https://docs.seismic.finance" target="_blank">Documentation</a>
+            <a href="https://www.seismic.systems/blog" target="_blank">Blog</a>
         </div>
         <p class="footer-copy">Built by Seismic Community | Encrypt the Future</p>
     </footer>
 
     <script>
-        // Fintech data - Real companies
+        // Fintech data - Real partners first, then potential
         const fintechs = [
+            // REAL PARTNERS - Building on Seismic
             {
                 name: 'Specie Finance',
                 category: 'neobank',
                 logo: '#D0A0B7',
                 abbrev: 'SP',
-                description: 'Global neobank for trade finance. Single account replacing 4+ traditional bank accounts for importers/exporters.',
+                description: 'Global neobank for trade finance led by Frankie DiGiacomo (ex-Morgan Stanley). Single account replacing 4+ traditional bank accounts for importers/exporters. 124+ countries, same-day settlement.',
                 volume: 850000000,
                 users: 125000,
                 region: 'Global',
                 integrated: true,
-                integrationNote: 'Live on Seismic encrypted rails'
+                integrationNote: 'Live on Seismic - Privacy for trade finance',
+                link: 'https://specie.finance'
             },
             {
-                name: 'CRED',
-                category: 'payments',
+                name: 'Cred',
+                category: 'lending',
                 logo: '#00D897',
                 abbrev: 'CR',
-                description: 'India\'s leading credit card bill payment platform. Rewards members for financial discipline.',
-                volume: 15000000000,
-                users: 13000000,
-                region: 'India',
+                description: 'Private credit service led by Julian Gay (sold company to AppDirect). Backed by Alliance DAO. Uses proprietary credit analytics to provide fast working capital to frontier businesses.',
+                volume: 500000000,
+                users: 50000,
+                region: 'Global',
                 integrated: true,
-                integrationNote: 'Partner integration active'
+                integrationNote: 'Live on Seismic - Encrypted lending rails',
+                link: 'https://www.seismic.systems/blog'
             },
+            // POTENTIAL INTEGRATIONS
             {
                 name: 'Stripe',
                 category: 'payments',
                 logo: '#635BFF',
                 abbrev: 'ST',
-                description: 'Global payment processing infrastructure for internet businesses. Powers millions of companies.',
+                description: 'Global payment processing infrastructure for internet businesses. Powers millions of companies worldwide.',
                 volume: 817000000000,
                 users: 4000000,
                 region: 'Global',
                 integrated: false,
-                integrationNote: 'High potential for encrypted B2B payments'
+                integrationNote: 'High potential - B2B payments need privacy'
             },
             {
                 name: 'Razorpay',
                 category: 'payments',
                 logo: '#072654',
                 abbrev: 'RP',
-                description: 'India\'s leading payment gateway. Full-stack financial solutions for businesses.',
+                description: 'India\'s leading payment gateway. Full-stack financial solutions for businesses of all sizes.',
                 volume: 180000000000,
                 users: 8000000,
                 region: 'India',
@@ -817,19 +1013,19 @@
                 category: 'payments',
                 logo: '#00B9FF',
                 abbrev: 'WI',
-                description: 'International money transfers at real exchange rates. Moving money without borders.',
+                description: 'International money transfers at real exchange rates. Moving money across borders without hidden fees.',
                 volume: 105000000000,
                 users: 16000000,
                 region: 'Global',
                 integrated: false,
-                integrationNote: 'Perfect fit for encrypted cross-border rails'
+                integrationNote: 'Perfect for encrypted cross-border rails'
             },
             {
                 name: 'Revolut',
                 category: 'neobank',
                 logo: '#0066FF',
                 abbrev: 'RV',
-                description: 'Digital banking alternative with trading, crypto, and international spending.',
+                description: 'Digital banking with trading, crypto, and international spending. 35M+ customers globally.',
                 volume: 230000000000,
                 users: 35000000,
                 region: 'Global',
@@ -841,19 +1037,19 @@
                 category: 'neobank',
                 logo: '#820AD1',
                 abbrev: 'NU',
-                description: 'Latin America\'s largest digital bank. Financial services for 85M+ customers.',
+                description: 'Latin America\'s largest digital bank with 85M+ customers. Leading fintech in Brazil.',
                 volume: 320000000000,
                 users: 85000000,
                 region: 'LATAM',
                 integrated: false,
-                integrationNote: 'Massive privacy potential in Brazil market'
+                integrationNote: 'Massive privacy potential in LATAM market'
             },
             {
                 name: 'Klarna',
                 category: 'lending',
                 logo: '#FFB3C7',
                 abbrev: 'KL',
-                description: 'Buy now, pay later leader. Smooth shopping experiences for 150M consumers.',
+                description: 'Buy now, pay later leader. Smooth shopping experiences for 150M consumers worldwide.',
                 volume: 80000000000,
                 users: 150000000,
                 region: 'Global',
@@ -861,49 +1057,13 @@
                 integrationNote: 'BNPL data privacy opportunity'
             },
             {
-                name: 'Affirm',
-                category: 'lending',
-                logo: '#0FA0EA',
-                abbrev: 'AF',
-                description: 'Transparent buy now, pay later. No hidden fees, no late fees, no gotchas.',
-                volume: 44000000000,
-                users: 14000000,
-                region: 'North America',
-                integrated: false,
-                integrationNote: 'Consumer lending privacy rails'
-            },
-            {
-                name: 'Plaid',
-                category: 'payments',
-                logo: '#000000',
-                abbrev: 'PL',
-                description: 'Financial data network connecting apps to bank accounts. Powers 8000+ fintechs.',
-                volume: 0,
-                users: 100000000,
-                region: 'Global',
-                integrated: false,
-                integrationNote: 'Data aggregation privacy layer'
-            },
-            {
-                name: 'Chime',
-                category: 'neobank',
-                logo: '#1EC677',
-                abbrev: 'CH',
-                description: 'Fee-free mobile banking. Early paycheck access and automatic savings.',
-                volume: 150000000000,
-                users: 21000000,
-                region: 'USA',
-                integrated: false,
-                integrationNote: 'Consumer banking privacy integration'
-            },
-            {
-                name: 'Adyen',
+                name: 'Airwallex',
                 category: 'payments',
                 logo: '#0ABF53',
-                abbrev: 'AD',
-                description: 'Enterprise payment platform. Single integration for global payments.',
-                volume: 767000000000,
-                users: 5000,
+                abbrev: 'AW',
+                description: 'Global payments platform for businesses. Multi-currency accounts, cards, and embedded finance.',
+                volume: 235000000000,
+                users: 200000,
                 region: 'Global',
                 integrated: false,
                 integrationNote: 'Enterprise encrypted settlement rails'
@@ -928,8 +1088,11 @@
             return num.toLocaleString();
         }
 
-        // Update display with header total
-        document.getElementById('totalVolume').textContent = formatVolume(totalVolume);
+        function formatTx(num) {
+            if (num >= 1000000000) return (num / 1000000000).toFixed(1) + 'B';
+            if (num >= 1000000) return (num / 1000000).toFixed(0) + 'M';
+            return num.toLocaleString();
+        }
 
         // Render fintech cards
         function renderFintechs(filter = 'all') {
@@ -989,8 +1152,7 @@
         const encryptedVolume = document.getElementById('encryptedVolume');
         const protectedUsers = document.getElementById('protectedUsers');
         const costSavings = document.getElementById('costSavings');
-        const settlementTime = document.getElementById('settlementTime');
-        const potentialEncrypted = document.getElementById('potentialEncrypted');
+        const txPrivate = document.getElementById('txPrivate');
 
         function updateCalculations() {
             const percent = parseInt(slider.value);
@@ -998,14 +1160,13 @@
 
             const encrypted = totalVolume * (percent / 100);
             const users = totalUsers * (percent / 100);
-            const savings = encrypted * 0.02; // 2% cost savings
-            const settlement = Math.max(0.5, 10 - (percent * 0.095)); // Faster with more adoption
+            const savings = encrypted * 0.02; // 2% cost savings estimate
+            const txCount = (encrypted / 500) * (percent / 100); // Rough tx estimate
 
             encryptedVolume.textContent = formatVolume(encrypted);
             protectedUsers.textContent = formatUsers(Math.round(users));
             costSavings.textContent = formatVolume(savings);
-            settlementTime.textContent = settlement.toFixed(1) + 's';
-            potentialEncrypted.textContent = formatVolume(encrypted);
+            txPrivate.textContent = formatTx(Math.round(txCount));
 
             // Update slider fill
             const fillPercent = percent;
