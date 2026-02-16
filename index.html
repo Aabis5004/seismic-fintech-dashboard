@@ -1,0 +1,1022 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seismic - Fintech Integration Impact Calculator</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --seismic-pink: #D0A0B7;
+            --seismic-pink-dark: #8D6477;
+            --seismic-pink-light: #EAC4D5;
+            --bg-dark: #0a0a0f;
+            --bg-card: #12121a;
+            --bg-card-hover: #1a1a24;
+            --text-primary: #ffffff;
+            --text-secondary: #888899;
+            --text-muted: #555566;
+            --accent-green: #00D897;
+            --accent-blue: #4A9FFF;
+            --accent-orange: #FF9F43;
+            --border-color: #2a2a3a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(180deg, #12121a 0%, var(--bg-dark) 100%);
+            border-bottom: 1px solid var(--border-color);
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .seismic-logo {
+            width: 48px;
+            height: 48px;
+        }
+
+        .logo-text {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--seismic-pink);
+            letter-spacing: 2px;
+        }
+
+        .logo-subtitle {
+            font-size: 11px;
+            color: var(--text-secondary);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .header-stats {
+            display: flex;
+            gap: 40px;
+        }
+
+        .header-stat {
+            text-align: right;
+        }
+
+        .header-stat-value {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--accent-green);
+        }
+
+        .header-stat-label {
+            font-size: 11px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 80px 40px;
+            text-align: center;
+            background: radial-gradient(ellipse at center top, rgba(208, 160, 183, 0.08) 0%, transparent 60%);
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            background: linear-gradient(135deg, var(--seismic-pink) 0%, var(--seismic-pink-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto 40px;
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px 80px;
+        }
+
+        /* Calculator Section */
+        .calculator-section {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 40px;
+            margin-bottom: 60px;
+        }
+
+        .calculator-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 32px;
+        }
+
+        .calculator-title {
+            font-size: 24px;
+            font-weight: 600;
+        }
+
+        .calculator-badge {
+            background: rgba(208, 160, 183, 0.15);
+            color: var(--seismic-pink);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .slider-container {
+            margin-bottom: 40px;
+        }
+
+        .slider-label {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .slider-label span {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        .slider-value {
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--seismic-pink);
+        }
+
+        .slider {
+            width: 100%;
+            height: 8px;
+            border-radius: 4px;
+            background: var(--border-color);
+            outline: none;
+            -webkit-appearance: none;
+            cursor: pointer;
+        }
+
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: var(--seismic-pink);
+            cursor: pointer;
+            box-shadow: 0 0 20px rgba(208, 160, 183, 0.5);
+        }
+
+        .slider::-moz-range-thumb {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: var(--seismic-pink);
+            cursor: pointer;
+            border: none;
+        }
+
+        /* Impact Stats Grid */
+        .impact-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+        }
+
+        .impact-card {
+            background: var(--bg-dark);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 24px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .impact-card:hover {
+            border-color: var(--seismic-pink);
+            transform: translateY(-2px);
+        }
+
+        .impact-icon {
+            width: 48px;
+            height: 48px;
+            margin: 0 auto 16px;
+            background: rgba(208, 160, 183, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .impact-value {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+
+        .impact-value.green { color: var(--accent-green); }
+        .impact-value.blue { color: var(--accent-blue); }
+        .impact-value.orange { color: var(--accent-orange); }
+        .impact-value.pink { color: var(--seismic-pink); }
+
+        .impact-label {
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        /* Fintech Companies Section */
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 32px;
+        }
+
+        .section-title {
+            font-size: 28px;
+            font-weight: 600;
+        }
+
+        .section-subtitle {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        .filter-tabs {
+            display: flex;
+            gap: 8px;
+        }
+
+        .filter-tab {
+            padding: 8px 20px;
+            border-radius: 20px;
+            border: 1px solid var(--border-color);
+            background: transparent;
+            color: var(--text-secondary);
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .filter-tab:hover {
+            border-color: var(--seismic-pink);
+            color: var(--seismic-pink);
+        }
+
+        .filter-tab.active {
+            background: var(--seismic-pink);
+            border-color: var(--seismic-pink);
+            color: var(--bg-dark);
+        }
+
+        /* Fintech Cards Grid */
+        .fintech-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .fintech-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 28px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .fintech-card:hover {
+            border-color: var(--seismic-pink);
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .fintech-card.integrated {
+            border-color: var(--accent-green);
+        }
+
+        .fintech-card.integrated::before {
+            content: 'INTEGRATED';
+            position: absolute;
+            top: 16px;
+            right: -32px;
+            background: var(--accent-green);
+            color: var(--bg-dark);
+            font-size: 9px;
+            font-weight: 600;
+            padding: 4px 40px;
+            transform: rotate(45deg);
+            letter-spacing: 1px;
+        }
+
+        .fintech-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        .fintech-logo {
+            width: 56px;
+            height: 56px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: 700;
+            color: white;
+        }
+
+        .fintech-info h3 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .fintech-info span {
+            font-size: 12px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .fintech-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        .fintech-stat {
+            background: var(--bg-dark);
+            padding: 12px;
+            border-radius: 8px;
+        }
+
+        .fintech-stat-value {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .fintech-stat-label {
+            font-size: 11px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+        }
+
+        .fintech-description {
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            line-height: 1.7;
+        }
+
+        .integration-status {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 16px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        .integration-status.integrated {
+            background: rgba(0, 216, 151, 0.1);
+            color: var(--accent-green);
+        }
+
+        .integration-status.potential {
+            background: rgba(208, 160, 183, 0.1);
+            color: var(--seismic-pink);
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+        }
+
+        .status-dot.green { background: var(--accent-green); }
+        .status-dot.pink { background: var(--seismic-pink); }
+
+        /* How It Works Section */
+        .how-it-works {
+            margin-top: 80px;
+            padding: 60px;
+            background: linear-gradient(135deg, rgba(208, 160, 183, 0.05) 0%, transparent 100%);
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+        }
+
+        .how-it-works h2 {
+            font-size: 32px;
+            text-align: center;
+            margin-bottom: 16px;
+        }
+
+        .how-it-works > p {
+            text-align: center;
+            color: var(--text-secondary);
+            margin-bottom: 48px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 32px;
+        }
+
+        .step {
+            text-align: center;
+            position: relative;
+        }
+
+        .step:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            top: 32px;
+            right: -16px;
+            width: 32px;
+            height: 2px;
+            background: var(--border-color);
+        }
+
+        .step-number {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            background: var(--bg-card);
+            border: 2px solid var(--seismic-pink);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--seismic-pink);
+            margin: 0 auto 20px;
+        }
+
+        .step h4 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .step p {
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        /* Footer */
+        .footer {
+            margin-top: 80px;
+            padding: 40px;
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 32px;
+            margin-bottom: 24px;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover {
+            color: var(--seismic-pink);
+        }
+
+        .footer-copy {
+            color: var(--text-muted);
+            font-size: 13px;
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .fintech-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .impact-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .steps-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .step:not(:last-child)::after {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 20px;
+            }
+            .header-stats {
+                gap: 24px;
+            }
+            .hero h1 {
+                font-size: 32px;
+            }
+            .fintech-grid {
+                grid-template-columns: 1fr;
+            }
+            .impact-grid {
+                grid-template-columns: 1fr;
+            }
+            .steps-grid {
+                grid-template-columns: 1fr;
+            }
+            .container {
+                padding: 0 20px 60px;
+            }
+            .calculator-section {
+                padding: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="logo-section">
+                <svg class="seismic-logo" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="crystalGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#EAC4D5"/>
+                            <stop offset="50%" style="stop-color:#D0A0B7"/>
+                            <stop offset="100%" style="stop-color:#8D6477"/>
+                        </linearGradient>
+                        <linearGradient id="crystalGrad2" x1="100%" y1="0%" x2="0%" y2="100%">
+                            <stop offset="0%" style="stop-color:#D0A0B7"/>
+                            <stop offset="100%" style="stop-color:#6A525D"/>
+                        </linearGradient>
+                    </defs>
+                    <path d="M50 8 L72 25 L72 55 L50 75 L28 55 L28 25 Z" fill="url(#crystalGrad1)" opacity="0.9"/>
+                    <path d="M50 8 L28 25 L28 55 L50 75" fill="url(#crystalGrad2)" opacity="0.7"/>
+                    <path d="M50 8 L50 75" stroke="#EAC4D5" stroke-width="1" opacity="0.5"/>
+                    <path d="M28 25 L72 25" stroke="#EAC4D5" stroke-width="1" opacity="0.3"/>
+                    <path d="M28 55 L72 55" stroke="#EAC4D5" stroke-width="1" opacity="0.3"/>
+                    <ellipse cx="50" cy="88" rx="20" ry="6" fill="#D0A0B7" opacity="0.2"/>
+                </svg>
+                <div>
+                    <div class="logo-text">SEISMIC</div>
+                    <div class="logo-subtitle">Encrypted Blockchain Rails</div>
+                </div>
+            </div>
+            <div class="header-stats">
+                <div class="header-stat">
+                    <div class="header-stat-value" id="totalVolume">$2.4T</div>
+                    <div class="header-stat-label">Total Fintech Volume</div>
+                </div>
+                <div class="header-stat">
+                    <div class="header-stat-value" id="potentialEncrypted">$0</div>
+                    <div class="header-stat-label">Potential Encrypted</div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+        <h1>Fintech Integration Impact Calculator</h1>
+        <p>See how Seismic's encrypted blockchain rails can transform the global fintech ecosystem. Calculate the impact of privacy-first financial infrastructure.</p>
+    </section>
+
+    <!-- Main Content -->
+    <main class="container">
+        <!-- Calculator -->
+        <section class="calculator-section">
+            <div class="calculator-header">
+                <h2 class="calculator-title">Impact Calculator</h2>
+                <span class="calculator-badge">Real-time Simulation</span>
+            </div>
+            
+            <div class="slider-container">
+                <div class="slider-label">
+                    <span>What if this percentage of fintechs integrated Seismic?</span>
+                    <div class="slider-value"><span id="percentValue">25</span>%</div>
+                </div>
+                <input type="range" class="slider" id="percentSlider" min="0" max="100" value="25">
+            </div>
+
+            <div class="impact-grid">
+                <div class="impact-card">
+                    <div class="impact-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#D0A0B7" stroke-width="2">
+                            <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+                        </svg>
+                    </div>
+                    <div class="impact-value green" id="encryptedVolume">$600B</div>
+                    <div class="impact-label">Encrypted Transaction Volume</div>
+                </div>
+                <div class="impact-card">
+                    <div class="impact-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#D0A0B7" stroke-width="2">
+                            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                            <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                        </svg>
+                    </div>
+                    <div class="impact-value blue" id="protectedUsers">45M</div>
+                    <div class="impact-label">Users with Privacy Protection</div>
+                </div>
+                <div class="impact-card">
+                    <div class="impact-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#D0A0B7" stroke-width="2">
+                            <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/>
+                            <polyline points="17 6 23 6 23 12"/>
+                        </svg>
+                    </div>
+                    <div class="impact-value orange" id="costSavings">$12B</div>
+                    <div class="impact-label">Annual Cost Savings</div>
+                </div>
+                <div class="impact-card">
+                    <div class="impact-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#D0A0B7" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/>
+                            <polyline points="12 6 12 12 16 14"/>
+                        </svg>
+                    </div>
+                    <div class="impact-value pink" id="settlementTime">2.4s</div>
+                    <div class="impact-label">Avg Settlement Time</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Fintech Companies -->
+        <section>
+            <div class="section-header">
+                <div>
+                    <h2 class="section-title">Fintech Ecosystem</h2>
+                    <p class="section-subtitle">Real companies and their integration potential with Seismic</p>
+                </div>
+                <div class="filter-tabs">
+                    <button class="filter-tab active" onclick="filterFintechs('all')">All</button>
+                    <button class="filter-tab" onclick="filterFintechs('integrated')">Integrated</button>
+                    <button class="filter-tab" onclick="filterFintechs('payments')">Payments</button>
+                    <button class="filter-tab" onclick="filterFintechs('neobank')">Neobanks</button>
+                    <button class="filter-tab" onclick="filterFintechs('lending')">Lending</button>
+                </div>
+            </div>
+
+            <div class="fintech-grid" id="fintechGrid">
+                <!-- Cards will be populated by JavaScript -->
+            </div>
+        </section>
+
+        <!-- How It Works -->
+        <section class="how-it-works">
+            <h2>How Seismic Integration Works</h2>
+            <p>Four simple steps to transform your fintech with encrypted blockchain rails</p>
+            
+            <div class="steps-grid">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h4>Connect API</h4>
+                    <p>Integrate Seismic SDK with your existing payment infrastructure</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h4>Encrypt Rails</h4>
+                    <p>Transaction data is encrypted on Seismic's private blockchain</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h4>Process Privately</h4>
+                    <p>Settlements occur without exposing business data publicly</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h4>Scale Globally</h4>
+                    <p>Unified liquidity across borders with local rail support</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-links">
+            <a href="https://seismic.finance" target="_blank">Seismic Finance</a>
+            <a href="https://twitter.com/seabornefi" target="_blank">Twitter</a>
+            <a href="https://discord.gg/seismic" target="_blank">Discord</a>
+            <a href="https://docs.seismic.finance" target="_blank">Documentation</a>
+        </div>
+        <p class="footer-copy">Built by Seismic Community | Encrypt the Future</p>
+    </footer>
+
+    <script>
+        // Fintech data - Real companies
+        const fintechs = [
+            {
+                name: 'Specie Finance',
+                category: 'neobank',
+                logo: '#D0A0B7',
+                abbrev: 'SP',
+                description: 'Global neobank for trade finance. Single account replacing 4+ traditional bank accounts for importers/exporters.',
+                volume: 850000000,
+                users: 125000,
+                region: 'Global',
+                integrated: true,
+                integrationNote: 'Live on Seismic encrypted rails'
+            },
+            {
+                name: 'CRED',
+                category: 'payments',
+                logo: '#00D897',
+                abbrev: 'CR',
+                description: 'India\'s leading credit card bill payment platform. Rewards members for financial discipline.',
+                volume: 15000000000,
+                users: 13000000,
+                region: 'India',
+                integrated: true,
+                integrationNote: 'Partner integration active'
+            },
+            {
+                name: 'Stripe',
+                category: 'payments',
+                logo: '#635BFF',
+                abbrev: 'ST',
+                description: 'Global payment processing infrastructure for internet businesses. Powers millions of companies.',
+                volume: 817000000000,
+                users: 4000000,
+                region: 'Global',
+                integrated: false,
+                integrationNote: 'High potential for encrypted B2B payments'
+            },
+            {
+                name: 'Razorpay',
+                category: 'payments',
+                logo: '#072654',
+                abbrev: 'RP',
+                description: 'India\'s leading payment gateway. Full-stack financial solutions for businesses.',
+                volume: 180000000000,
+                users: 8000000,
+                region: 'India',
+                integrated: false,
+                integrationNote: 'Ideal for private merchant settlements'
+            },
+            {
+                name: 'Wise',
+                category: 'payments',
+                logo: '#00B9FF',
+                abbrev: 'WI',
+                description: 'International money transfers at real exchange rates. Moving money without borders.',
+                volume: 105000000000,
+                users: 16000000,
+                region: 'Global',
+                integrated: false,
+                integrationNote: 'Perfect fit for encrypted cross-border rails'
+            },
+            {
+                name: 'Revolut',
+                category: 'neobank',
+                logo: '#0066FF',
+                abbrev: 'RV',
+                description: 'Digital banking alternative with trading, crypto, and international spending.',
+                volume: 230000000000,
+                users: 35000000,
+                region: 'Global',
+                integrated: false,
+                integrationNote: 'Strong candidate for private transaction layer'
+            },
+            {
+                name: 'Nubank',
+                category: 'neobank',
+                logo: '#820AD1',
+                abbrev: 'NU',
+                description: 'Latin America\'s largest digital bank. Financial services for 85M+ customers.',
+                volume: 320000000000,
+                users: 85000000,
+                region: 'LATAM',
+                integrated: false,
+                integrationNote: 'Massive privacy potential in Brazil market'
+            },
+            {
+                name: 'Klarna',
+                category: 'lending',
+                logo: '#FFB3C7',
+                abbrev: 'KL',
+                description: 'Buy now, pay later leader. Smooth shopping experiences for 150M consumers.',
+                volume: 80000000000,
+                users: 150000000,
+                region: 'Global',
+                integrated: false,
+                integrationNote: 'BNPL data privacy opportunity'
+            },
+            {
+                name: 'Affirm',
+                category: 'lending',
+                logo: '#0FA0EA',
+                abbrev: 'AF',
+                description: 'Transparent buy now, pay later. No hidden fees, no late fees, no gotchas.',
+                volume: 44000000000,
+                users: 14000000,
+                region: 'North America',
+                integrated: false,
+                integrationNote: 'Consumer lending privacy rails'
+            },
+            {
+                name: 'Plaid',
+                category: 'payments',
+                logo: '#000000',
+                abbrev: 'PL',
+                description: 'Financial data network connecting apps to bank accounts. Powers 8000+ fintechs.',
+                volume: 0,
+                users: 100000000,
+                region: 'Global',
+                integrated: false,
+                integrationNote: 'Data aggregation privacy layer'
+            },
+            {
+                name: 'Chime',
+                category: 'neobank',
+                logo: '#1EC677',
+                abbrev: 'CH',
+                description: 'Fee-free mobile banking. Early paycheck access and automatic savings.',
+                volume: 150000000000,
+                users: 21000000,
+                region: 'USA',
+                integrated: false,
+                integrationNote: 'Consumer banking privacy integration'
+            },
+            {
+                name: 'Adyen',
+                category: 'payments',
+                logo: '#0ABF53',
+                abbrev: 'AD',
+                description: 'Enterprise payment platform. Single integration for global payments.',
+                volume: 767000000000,
+                users: 5000,
+                region: 'Global',
+                integrated: false,
+                integrationNote: 'Enterprise encrypted settlement rails'
+            }
+        ];
+
+        // Calculate total volume
+        const totalVolume = fintechs.reduce((sum, f) => sum + f.volume, 0);
+        const totalUsers = fintechs.reduce((sum, f) => sum + f.users, 0);
+
+        // Format numbers
+        function formatVolume(num) {
+            if (num >= 1000000000000) return '$' + (num / 1000000000000).toFixed(1) + 'T';
+            if (num >= 1000000000) return '$' + (num / 1000000000).toFixed(0) + 'B';
+            if (num >= 1000000) return '$' + (num / 1000000).toFixed(0) + 'M';
+            return '$' + num.toLocaleString();
+        }
+
+        function formatUsers(num) {
+            if (num >= 1000000) return (num / 1000000).toFixed(0) + 'M';
+            if (num >= 1000) return (num / 1000).toFixed(0) + 'K';
+            return num.toLocaleString();
+        }
+
+        // Update display with header total
+        document.getElementById('totalVolume').textContent = formatVolume(totalVolume);
+
+        // Render fintech cards
+        function renderFintechs(filter = 'all') {
+            const grid = document.getElementById('fintechGrid');
+            grid.innerHTML = '';
+
+            let filtered = fintechs;
+            if (filter === 'integrated') {
+                filtered = fintechs.filter(f => f.integrated);
+            } else if (filter !== 'all') {
+                filtered = fintechs.filter(f => f.category === filter);
+            }
+
+            filtered.forEach(fintech => {
+                const card = document.createElement('div');
+                card.className = `fintech-card ${fintech.integrated ? 'integrated' : ''}`;
+                card.innerHTML = `
+                    <div class="fintech-header">
+                        <div class="fintech-logo" style="background: ${fintech.logo}">${fintech.abbrev}</div>
+                        <div class="fintech-info">
+                            <h3>${fintech.name}</h3>
+                            <span>${fintech.category} | ${fintech.region}</span>
+                        </div>
+                    </div>
+                    <div class="fintech-stats">
+                        <div class="fintech-stat">
+                            <div class="fintech-stat-value">${fintech.volume > 0 ? formatVolume(fintech.volume) : 'N/A'}</div>
+                            <div class="fintech-stat-label">Annual Volume</div>
+                        </div>
+                        <div class="fintech-stat">
+                            <div class="fintech-stat-value">${formatUsers(fintech.users)}</div>
+                            <div class="fintech-stat-label">Users</div>
+                        </div>
+                    </div>
+                    <p class="fintech-description">${fintech.description}</p>
+                    <div class="integration-status ${fintech.integrated ? 'integrated' : 'potential'}">
+                        <span class="status-dot ${fintech.integrated ? 'green' : 'pink'}"></span>
+                        ${fintech.integrationNote}
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        // Filter function
+        function filterFintechs(category) {
+            document.querySelectorAll('.filter-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            renderFintechs(category);
+        }
+
+        // Slider functionality
+        const slider = document.getElementById('percentSlider');
+        const percentValue = document.getElementById('percentValue');
+        const encryptedVolume = document.getElementById('encryptedVolume');
+        const protectedUsers = document.getElementById('protectedUsers');
+        const costSavings = document.getElementById('costSavings');
+        const settlementTime = document.getElementById('settlementTime');
+        const potentialEncrypted = document.getElementById('potentialEncrypted');
+
+        function updateCalculations() {
+            const percent = parseInt(slider.value);
+            percentValue.textContent = percent;
+
+            const encrypted = totalVolume * (percent / 100);
+            const users = totalUsers * (percent / 100);
+            const savings = encrypted * 0.02; // 2% cost savings
+            const settlement = Math.max(0.5, 10 - (percent * 0.095)); // Faster with more adoption
+
+            encryptedVolume.textContent = formatVolume(encrypted);
+            protectedUsers.textContent = formatUsers(Math.round(users));
+            costSavings.textContent = formatVolume(savings);
+            settlementTime.textContent = settlement.toFixed(1) + 's';
+            potentialEncrypted.textContent = formatVolume(encrypted);
+
+            // Update slider fill
+            const fillPercent = percent;
+            slider.style.background = `linear-gradient(to right, #D0A0B7 0%, #D0A0B7 ${fillPercent}%, #2a2a3a ${fillPercent}%, #2a2a3a 100%)`;
+        }
+
+        slider.addEventListener('input', updateCalculations);
+
+        // Initial render
+        renderFintechs();
+        updateCalculations();
+    </script>
+</body>
+</html>
